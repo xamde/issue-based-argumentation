@@ -1,0 +1,218 @@
+= Issue-Based Argumentation
+:iba: IBA
+:issue: ISSUE
+:idea: IDEA
+:split: SPLIT
+:comment: COMMENT
+:toc:
+:toclevels: 3
+
+////
+NOTE to AI agents:
+Regions with  `#some text#` in AsciiDoc are rendered as a highlight.
+The # sign itself is ot visible.
+////
+
+{iba} ist eine universelle Problemlösungsstrategie.
+So wie das schriftliche Multiplizieren hilft, große Zahlen zu bewältigen, hilft {iba}, große und komplexe Probleme zu strukturieren und zu lösen.
+{iba} kann alleine oder im Team verwendet werden. +
+Gut funktioniert es in einem Texteditor (text, Markdown oder AsciiDoc) oder noch besser in einem gemeinsam nutzbaren Editor (Google Docs, Word, ...).
+
+== Beispiel
+
+.Einfaches Beispiel
+* [ ] {issue}: Kaffeemaschine ist kaputt
+** [ ] {idea}: Service-Techniker anrufen
+** [ ] {idea}: Wassertank könnte leer sein
+** [ ] {idea}: Selbst Fehler suchen
+** [ ] {idea}: Neue Kaffeemaschine kaufen
+
+== Spielregeln
+
+.Syntax
+{iba} wird als Liste mit verschachtelten Unterpunkten aufgeschrieben.
+Am Anfang jedes Eintrags steht ein kurzes Wort, welches die Art des Eintrags angibt.
+Erlaubt sind: {issue}, {idea} und {comment}.
+
+.Status
+An den Anfang jedes Listeneintrags kann noch eine Checkbox gesetzt werden, einfach mit zwei eckigen Klammern und einem Leerzeichen drin.
+In dieser Box wird notiert, ob ein Eintrag schon als gelöst `[x]` oder unlösbar `[-]` erkannt wurde.
+Am Anfang ist jeder Eintrag unbewertet `[ ]`.
+Ein Eintrag wird als unlösbar `[-]` markiert, wenn erkannt wurde, dass er nicht zum Ziel führt oder nicht umgesetzt werden kann.
+Dies hilft, Sackgassen schnell zu erkennen.
+
+
+
+=== Aktionen
+Als Teilnehmer bei einer {iba} hast Du folgende Möglichkeiten:
+
+==== Start
+Am Anfang steht bei {iba} immer ein `{issue}`, also ein Problem oder eine Frage.
+Etwas Ungelöstes.
+Dieser `{issue}` wird an den Anfang gesetzt.
+
+.Beispiel
+****
+* #[ ] {issue}: Kaffeemaschine ist kaputt#
+****
+
+==== Idee haben
+
+Kann an einen bestehenden {issue} angelegt werden.
+Du hast eine Idee, wie das Problem gelöst, die Frage beantwortet werden kann?
+Erzeuge einen neuen Listen-Unterpunkt der eins mehr eingerückt ist als der {issue} auf den sich die Idee bezieht.
+
+.Beispiel
+****
+* [ ] {issue}: Kaffeemaschine ist kaputt
+** #[ ] {idea}: Service-Techniker anrufen#
+****
+
+TIP: Ein {issue} kann beliebig viele mögliche, alternative Lösungsideen haben.
+Sobald eine der Ideen sich als umsetzbar erweist, ist das Problem gelöst.
+
+==== Idee bewerten
+Nach dem Eintragen einer Idee wird sie von einigen order allen Teilnehmern bewertet: Ist die Idee umsetzbar?
+
+
+.Probleme sehen
+Ist eine bestehende {idea} nicht umsetzbar?
+Noch zu unklar?
+Offene Fragen und entstehende neue Probleme können direkt als neue Unter-{issue} angehängt werden.
+
+.Einfaches Beispiel
+* {issue}: Kaffeemaschine ist kaputt
+** {idea}: Service-Techniker anrufen
+*** #{issue}: Wer zahlt die Reparatur?#
+
+TIP: Eine {idea} kann beliebig viele neue {issue} aufwerfen.
+
+==== Problem aufteilen
+
+Der mächtigste Zug bei {iba} ist es, ein Problem in kleinere Probleme zu zerlegen.
+Dazu wird eine {idea} mit dem Text `{split}` angelegt.
+
+.Beispiel
+****
+* [ ] {issue}: Den perfekten Campingplatz für einen Kanu-Urlaub mit einer Gruppe von acht Personen finden.
+** #[ ] {idea}: {split}#
+*** #[ ] {issue}: Auswahl eines Landes#
+*** #[ ] {issue}: Entscheiden ob in den Bergen oder am Meer#
+*** #[ ] {issue}: Vorlieben der Gruppenteilnehmer einholen und berücksichtigen#
+****
+
+TIP: Für ein Problem kann es mehrere Zerteilungen geben.
+Wichtig ist, zunächst zu prüfen, ob die Zerlegung gültig ist: Wenn alle angegebenen Teilprobleme gelöst wären, wäre das Problem darüber gelöst?
+Ist das Zusammensetzen der Teillösungen zur Gesamtlösung erklärungsbedürftig, so kann dies als Teil von {split} vermerkt werden. Die {idea} wird dann notiert als: `{idea}: {split}. (eigener Text hier).`
+
+
+==== Kommentieren
+Diese Aktion kann komplett weggelassen werden.
+Sie ermöglicht das Einbringen von Wissen oder Gefühlen, ohne die Struktur von {iba} zu stören.
+
+.Beispiel
+****
+* [ ] {issue}: Entscheiden, ob in den Bergen oder am Meer
+** #{comment}: Geht nicht beides?#
+****
+
+
+
+=== Lösungsfindung: Wann ist etwas gelöst?
+Jede neue Idee wird geprüft: Ist sie umsetzbar?
+Falls ja, so kann sie im besten Fall der letzt Baustein für die Gesamtlösung sein.
+
+Der Status (`[ ]`, `[x]`, `[-]`) eines Eintrags hängt von seinen Unterpunkten ab.
+Die Regeln werden von unten nach oben angewendet:
+
+Ein *{idea}* ist...
+
+* *gelöst* `[x]`, wenn...
+** die Idee an sich umsetzbar ist UND
+** alle direkten Unter-`{issue}`s den Status `[x]` haben.
+
+* *unlösbar* `[-]`, wenn...
+** die Idee an sich nicht umsetzbar ist ODER
+** mindestens ein direkter Unter-`{issue}` den Status `[-]` hat.
+
+* *ungelöst* `[ ]` in allen anderen Fällen (z.B. wenn es noch offene Unter-`{issue}`s gibt).
+
+Ein *{issue}* ist...
+
+* *gelöst* `[x]`, wenn...
+** mindestens eine direkte Unter-`{idea}` den Status `[x]` hat.
+
+* *unlösbar* `[-]`, wenn...
+** alle direkten Unter-`{idea}`s den Status `[-]` haben.
+
+* *ungelöst* `[ ]` in allen anderen Fällen (z.B. wenn es noch keine Ideen gibt oder alle Ideen noch ungelöst sind).
+
+Ein `{comment}` hat keinen Einfluss auf den Lösungsstatus.
+
+
+
+
+
+
+
+
+
+== Praktische Hinweise
+
+.Beispiel
+****
+* [x] {issue}: Entscheiden, ob in den Bergen oder am Meer
+** #[x] {idea}: Berge#
+** #[x] {idea}: Meer#
+****
+
+Hier sind zwei mögliche, umsetzbare Ideen zur Auswahl.
+Die Teilnehmer können zufällig eine Idee auswählen oder demokratisch abstimmen.
+Aus Sicht von {iba} ist das übergeordnete Problem gelöst.
+
+=== Mehrere Spieler
+Bei mehreren Spielern in einem Online-Editor sollte jeder seine Beiträge mit dem Namen markieren. Jeweils am Ende eines Eintrags, um die Inhalte und nicht die Personen in den Vordergrund zu stellen.
+
+
+
+
+
+
+== Beispiele
+
+=== Camping-Urlaub
+Hier ist ein Beispiel, das den Prozess von Anfang bis Ende zeigt.
+
+.Phase 1: Problem und erste Zerlegung
+* [ ] {issue}: Den perfekten Campingplatz für einen Kanu-Urlaub mit einer Gruppe von acht Personen finden.
+** [ ] {idea}: {split}
+*** [ ] {issue}: Auswahl eines Landes
+*** [ ] {issue}: Entscheiden ob in den Bergen oder am Meer
+*** [ ] {issue}: Vorlieben der Gruppenteilnehmer einholen und berücksichtigen
+
+
+.Phase 2: Eine Lösung für ein Teilproblem
+* [ ] {issue}: Den perfekten Campingplatz für einen Kanu-Urlaub mit einer Gruppe von acht Personen finden.
+** [ ] {idea}: {split}
+*** [x] {issue}: Auswahl eines Landes
+**** [x] {idea}: Schweden
+***** {comment}: Tolle Seenlandschaft! -- Alice
+*** [ ] {issue}: Entscheiden ob in den Bergen oder am Meer
+**** [ ] {idea}: Berge
+**** [ ] {idea}: Meer
+*** [ ] {issue}: Vorlieben der Gruppenteilnehmer einholen und berücksichtigen
+
+
+.Phase 3: Eine Idee erweist sich als unlösbar
+* [ ] {issue}: Den perfekten Campingplatz für einen Kanu-Urlaub mit einer Gruppe von acht Personen finden.
+** [ ] {idea}: {split}
+*** [x] {issue}: Auswahl eines Landes
+**** [x] {idea}: Schweden
+***** {comment}: Tolle Seenlandschaft! - Max
+*** [x] {issue}: Entscheiden ob in den Bergen oder am Meer
+**** [-] {idea}: Berge
+***** [-] {issue}: In Schweden gibt es kaum Berge, die direkt an Kanu-tauglichen Seen liegen.
+**** [x] {idea}: Meer
+*** [ ] {issue}: Vorlieben der Gruppenteilnehmer einholen und berücksichtigen
+
+Sobald auch der letzte Unter-{issue} gelöst ist, wird die {idea}: {split} gelöst und damit auch das Hauptproblem.
