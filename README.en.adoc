@@ -1,0 +1,190 @@
+= Issue-Based Argumentation
+:iba: IBA
+:issue: ISSUE
+:idea: IDEA
+:split: SPLIT
+:comment: COMMENT
+:toc:
+:toclevels: 3
+
+{iba} is a universal problem-solving strategy.
+Just as written multiplication helps manage large numbers, {iba} helps to structure and solve large and complex problems.
+{iba} can be used alone or in a team. +
+It works well in a text editor (plain text, Markdown, or AsciiDoc) or even better in a shared editor (Google Docs, Word, ...).
+
+== Example
+
+.Simple Example
+* [ ] {issue}: Coffee machine is broken
+** [ ] {idea}: Call a service technician
+** [ ] {idea}: Water tank might be empty
+** [ ] {idea}: Look for the error myself
+** [ ] {idea}: Buy a new coffee machine
+
+== Rules
+
+.Syntax
+{iba} is written as a nested list.
+Each entry begins with a short keyword indicating its type.
+Allowed keywords are: {issue}, {idea}, and {comment}.
+
+.Status
+A checkbox can be placed at the beginning of each list item, simply with two square brackets and a space inside.
+This box records whether an item has been identified as resolved `[x]` or unfeasible `[-]`.
+Initially, every item is unresolved `[ ]`.
+An item is marked as unfeasible `[-]` when it's recognized that it does not lead to the goal or cannot be implemented.
+This helps to quickly identify dead ends.
+
+
+
+=== Actions
+As a participant in an {iba} session, you have the following options:
+
+==== Start
+An {iba} always begins with an `{issue}`, which is a problem or a question.
+Something unresolved.
+This `{issue}` is placed at the beginning.
+
+.Example
+****
+* *[ ] {issue}: Coffee machine is broken*
+****
+
+==== Have an Idea
+
+An idea can be attached to an existing {issue}.
+Do you have an idea on how to solve the problem or answer the question?
+Create a new sub-list item, indented one level deeper than the {issue} the idea refers to.
+
+.Example
+****
+* [ ] {issue}: Coffee machine is broken
+** *[ ] {idea}: Call a service technician*
+****
+
+TIP: An {issue} can have any number of possible, alternative solution ideas. As soon as one of the ideas proves to be feasible, the problem is solved.
+
+==== Evaluate an Idea
+After an idea is added, it is evaluated by some or all participants: Is the idea feasible?
+
+
+.Identifying Problems
+Is an existing {idea} not feasible?
+Still too unclear?
+Open questions and newly arising problems can be directly attached as new sub-{issue}s.
+
+.Simple Example
+* {issue}: Coffee machine is broken
+** {idea}: Call a service technician
+*** *{issue}: Who pays for the repair?*
+
+TIP: An {idea} can raise any number of new {issue}s.
+
+==== Split a Problem
+
+The most powerful move in {iba} is to break down a problem into smaller sub-problems.
+This is done by creating an {idea} with the text `{split}`.
+
+.Example
+****
+* [ ] {issue}: Find the perfect campsite for a canoe trip with a group of eight people.
+** *[ ] {idea}: {split}*
+*** *[ ] {issue}: Select a country*
+*** *[ ] {issue}: Decide between mountains or seaside*
+*** *[ ] {issue}: Gather and consider the preferences of the group members*
+****
+
+TIP: There can be multiple ways to split a problem. It's important to first check if the split is valid: If all the specified sub-problems were solved, would the parent problem be solved? If the process of combining the partial solutions into the overall solution needs explanation, this can be noted as part of the `{split}`. The `{idea}` is then noted as: `{idea}: {split}: <Text on how to combine the solutions>.`
+
+==== Comment
+This action can be omitted entirely.
+It allows for contributing knowledge or feelings without disrupting the structure of {iba}.
+
+.Example
+****
+* [ ] {issue}: Decide between mountains or seaside
+** *{comment}: Can't we have both?*
+****
+
+
+
+=== Resolution Logic: When is something resolved?
+The status (`[ ]`, `[x]`, `[-]`) of an item is automatically determined by the status of its sub-items. The rules are applied from the bottom up:
+
+.Status of an *{idea}*
+`[x]` (resolved)::
+The idea is feasible *and* all its sub-{issue}s are `[x]`.
+`[-]` (unfeasible)::
+The idea is not feasible *or* at least one sub-{issue} is `[-]`.
+`[ ]` (unresolved)::
+In all other cases (e.g., if there are still open sub-{issue}s).
+
+.Status of an *{issue}*
+`[x]` (resolved)::
+At least one of its sub-{idea}s is `[x]`.
+`[-]` (unfeasible)::
+All of its sub-{idea}s are `[-]`.
+`[ ]` (unresolved)::
+In all other cases (e.g., if there are no ideas yet or all ideas are still unresolved).
+
+`{comment}` entries do not affect the resolution status.
+
+
+
+== Practical Tips
+
+.Example
+****
+* [x] {issue}: Decide between mountains or seaside
+** [x] {idea}: Mountains
+** [x] {idea}: Seaside
+** *{comment}: Now that we have two valid options, the decision can be made. The {issue} is therefore resolved. The final choice is an external step.*
+****
+
+Here, there are two possible, feasible ideas to choose from.
+The participants can randomly select an idea or vote democratically.
+From the perspective of {iba}, the parent problem is resolved.
+
+=== Multiple Players
+When multiple players are in an online editor, everyone should mark their contributions with their name, preferably at the end of an entry, to keep the focus on the content rather than the people.
+
+
+
+== Examples
+
+=== Camping Trip
+Here is an example that shows the process from start to finish.
+
+.Phase 1: Problem and Initial Split
+* [ ] {issue}: Find the perfect campsite for a canoe trip with a group of eight people.
+** [ ] {idea}: {split}
+*** [ ] {issue}: Select a country
+*** [ ] {issue}: Decide between mountains or seaside
+*** [ ] {issue}: Gather and consider the preferences of the group members
+
+
+.Phase 2: A Solution for a Sub-Problem
+* [ ] {issue}: Find the perfect campsite for a canoe trip with a group of eight people.
+** [ ] {idea}: {split}
+*** [x] {issue}: Select a country
+**** [x] {idea}: Sweden
+***** {comment}: Great lake landscape! -- Alice
+*** [ ] {issue}: Decide between mountains or seaside
+**** [ ] {idea}: Mountains
+**** [ ] {idea}: Seaside
+*** [ ] {issue}: Gather and consider the preferences of the group members
+
+
+.Phase 3: An Idea Turns Out to be Unfeasible
+* [ ] {issue}: Find the perfect campsite for a canoe trip with a group of eight people.
+** [ ] {idea}: {split}
+*** [x] {issue}: Select a country
+**** [x] {idea}: Sweden
+***** {comment}: Great lake landscape! -- Max
+*** [x] {issue}: Decide between mountains or seaside
+**** [-] {idea}: Mountains
+***** [-] {issue}: In Sweden, there are hardly any mountains directly on lakes suitable for canoeing.
+**** [x] {idea}: Seaside
+*** [ ] {issue}: Gather and consider the preferences of the group members
+
+Once the last sub-{issue} is also resolved, the `{idea}: {split}` will be resolved, and thus the main problem as well.

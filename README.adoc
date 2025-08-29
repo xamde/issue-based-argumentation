@@ -1,22 +1,27 @@
-= Issue-Based Argumentation
-:iba: IBA
-:issue: ISSUE
-:idea: IDEA
+= Lösungsbaum-Argumentation
+:iba: LBA
+:issue: PROBLEM
+:idea: IDEE
 :split: SPLIT
-:comment: COMMENT
+:comment: KOMMENTAR
 :toc:
 :toclevels: 3
+:icons: font
+:sectnums:
+// LBA – Lösungsbaum-Argumentation (LBA)
+// Lösungsbaum-Methode (LBM)
+// Strukturierte Lösungsfindung (SLF)
+// Problem-Zerlegung & Lösung (PZL)
+// Clarity Mapping
+// .. Dialog
 
-////
-NOTE to AI agents:
-Regions with  `#some text#` in AsciiDoc are rendered as a highlight.
-The # sign itself is ot visible.
-////
-
-{iba} ist eine universelle Problemlösungsstrategie.
+Lösungsbaum-Argumentation ({iba}) ist eine universelle Problemlösungsstrategie.
 So wie das schriftliche Multiplizieren hilft, große Zahlen zu bewältigen, hilft {iba}, große und komplexe Probleme zu strukturieren und zu lösen.
 {iba} kann alleine oder im Team verwendet werden. +
-Gut funktioniert es in einem Texteditor (text, Markdown oder AsciiDoc) oder noch besser in einem gemeinsam nutzbaren Editor (Google Docs, Word, ...).
+Gut funktioniert es in einem Texteditor (plain text, Markdown oder AsciiDoc) oder noch besser in einem gemeinsam nutzbaren Editor (Google Docs, Word, ...).
+
+.English version
+**Issue-based Argumentation (IBA), see link:README.en.adoc[].**
 
 == Beispiel
 
@@ -72,7 +77,7 @@ TIP: Ein {issue} kann beliebig viele mögliche, alternative Lösungsideen haben.
 Sobald eine der Ideen sich als umsetzbar erweist, ist das Problem gelöst.
 
 ==== Idee bewerten
-Nach dem Eintragen einer Idee wird sie von einigen order allen Teilnehmern bewertet: Ist die Idee umsetzbar?
+Nach dem Eintragen einer Idee wird sie von einigen oder allen Teilnehmern bewertet: Ist die Idee umsetzbar?
 
 
 .Probleme sehen
@@ -101,10 +106,7 @@ Dazu wird eine {idea} mit dem Text `{split}` angelegt.
 *** #[ ] {issue}: Vorlieben der Gruppenteilnehmer einholen und berücksichtigen#
 ****
 
-TIP: Für ein Problem kann es mehrere Zerteilungen geben.
-Wichtig ist, zunächst zu prüfen, ob die Zerlegung gültig ist: Wenn alle angegebenen Teilprobleme gelöst wären, wäre das Problem darüber gelöst?
-Ist das Zusammensetzen der Teillösungen zur Gesamtlösung erklärungsbedürftig, so kann dies als Teil von {split} vermerkt werden. Die {idea} wird dann notiert als: `{idea}: {split}. (eigener Text hier).`
-
+TIP: Für ein Problem kann es mehrere Zerteilungen geben. Wichtig ist, zunächst zu prüfen, ob die Zerlegung gültig ist: Wenn alle angegebenen Teilprobleme gelöst wären, wäre das Problem darüber gelöst? Wenn die Zusammensetzung der Teillösungen erklärt werden muss, kann dies direkt hinter `{split}` notiert werden, z.B. `{idea}: {split}: Wenn Land und Vorlieben klar sind, suchen wir auf booking.com.`
 
 ==== Kommentieren
 Diese Aktion kann komplett weggelassen werden.
@@ -120,40 +122,27 @@ Sie ermöglicht das Einbringen von Wissen oder Gefühlen, ohne die Struktur von 
 
 === Lösungsfindung: Wann ist etwas gelöst?
 Jede neue Idee wird geprüft: Ist sie umsetzbar?
-Falls ja, so kann sie im besten Fall der letzt Baustein für die Gesamtlösung sein.
+Falls ja, so kann sie im besten Fall der letzte Baustein für die Gesamtlösung sein.
 
-Der Status (`[ ]`, `[x]`, `[-]`) eines Eintrags hängt von seinen Unterpunkten ab.
-Die Regeln werden von unten nach oben angewendet:
+Der Status (`[ ]`, `[x]`, `[-]`) eines Eintrags wird logisch durch den Status seiner Unterpunkte bestimmt. Die Regeln werden von unten nach oben angewendet:
 
-Ein *{idea}* ist...
+.Status einer *{idea}*
+`[x]` (gelöst)::
+Die Idee ist umsetzbar *und* alle ihre Unter-{issue}s sind `[x]`.
+`[-]` (unlösbar)::
+Die Idee ist nicht umsetzbar *oder* mindestens ein Unter-{issue} ist `[-]`.
+`[ ]` (ungelöst)::
+In allen anderen Fällen (z.B. wenn es noch offene Unter-{issue}s gibt).
 
-* *gelöst* `[x]`, wenn...
-** die Idee an sich umsetzbar ist UND
-** alle direkten Unter-`{issue}`s den Status `[x]` haben.
+.Status eines *{issue}*
+`[x]` (gelöst)::
+Mindestens eine seiner Unter-{idea}s ist `[x]`.
+`[-]` (unlösbar)::
+Alle seine Unter-{idea}s sind `[-]`.
+`[ ]` (ungelöst)::
+In allen anderen Fällen (z.B. wenn es noch keine Ideen gibt oder alle Ideen noch ungelöst sind).
 
-* *unlösbar* `[-]`, wenn...
-** die Idee an sich nicht umsetzbar ist ODER
-** mindestens ein direkter Unter-`{issue}` den Status `[-]` hat.
-
-* *ungelöst* `[ ]` in allen anderen Fällen (z.B. wenn es noch offene Unter-`{issue}`s gibt).
-
-Ein *{issue}* ist...
-
-* *gelöst* `[x]`, wenn...
-** mindestens eine direkte Unter-`{idea}` den Status `[x]` hat.
-
-* *unlösbar* `[-]`, wenn...
-** alle direkten Unter-`{idea}`s den Status `[-]` haben.
-
-* *ungelöst* `[ ]` in allen anderen Fällen (z.B. wenn es noch keine Ideen gibt oder alle Ideen noch ungelöst sind).
-
-Ein `{comment}` hat keinen Einfluss auf den Lösungsstatus.
-
-
-
-
-
-
+`{comment}`-Einträge haben keinen Einfluss auf den Status.
 
 
 
@@ -184,22 +173,22 @@ Bei mehreren Spielern in einem Online-Editor sollte jeder seine Beiträge mit de
 Hier ist ein Beispiel, das den Prozess von Anfang bis Ende zeigt.
 
 .Phase 1: Problem und erste Zerlegung
-* [ ] {issue}: Den perfekten Campingplatz für einen Kanu-Urlaub mit einer Gruppe von acht Personen finden.
-** [ ] {idea}: {split}
-*** [ ] {issue}: Auswahl eines Landes
-*** [ ] {issue}: Entscheiden ob in den Bergen oder am Meer
-*** [ ] {issue}: Vorlieben der Gruppenteilnehmer einholen und berücksichtigen
+* #[ ] {issue}: Den perfekten Campingplatz für einen Kanu-Urlaub mit einer Gruppe von acht Personen finden.#
+** #[ ] {idea}: {split}#
+*** #[ ] {issue}: Auswahl eines Landes#
+*** #[ ] {issue}: Entscheiden ob in den Bergen oder am Meer#
+*** #[ ] {issue}: Vorlieben der Gruppenteilnehmer einholen und berücksichtigen#
 
 
 .Phase 2: Eine Lösung für ein Teilproblem
 * [ ] {issue}: Den perfekten Campingplatz für einen Kanu-Urlaub mit einer Gruppe von acht Personen finden.
 ** [ ] {idea}: {split}
 *** [x] {issue}: Auswahl eines Landes
-**** [x] {idea}: Schweden
-***** {comment}: Tolle Seenlandschaft! -- Alice
+**** #[x] {idea}: Schweden#
+***** #{comment}: Tolle Seenlandschaft! -- Alice#
 *** [ ] {issue}: Entscheiden ob in den Bergen oder am Meer
-**** [ ] {idea}: Berge
-**** [ ] {idea}: Meer
+**** #[ ] {idea}: Berge#
+**** #[ ] {idea}: Meer#
 *** [ ] {issue}: Vorlieben der Gruppenteilnehmer einholen und berücksichtigen
 
 
@@ -208,11 +197,184 @@ Hier ist ein Beispiel, das den Prozess von Anfang bis Ende zeigt.
 ** [ ] {idea}: {split}
 *** [x] {issue}: Auswahl eines Landes
 **** [x] {idea}: Schweden
-***** {comment}: Tolle Seenlandschaft! - Max
+***** {comment}: Tolle Seenlandschaft! -- Alice
 *** [x] {issue}: Entscheiden ob in den Bergen oder am Meer
-**** [-] {idea}: Berge
-***** [-] {issue}: In Schweden gibt es kaum Berge, die direkt an Kanu-tauglichen Seen liegen.
+**** #[-]# {idea}: Berge
+***** #[-] {issue}: In Schweden gibt es kaum Berge, die direkt an Kanu-tauglichen Seen liegen.#
 **** [x] {idea}: Meer
 *** [ ] {issue}: Vorlieben der Gruppenteilnehmer einholen und berücksichtigen
 
 Sobald auch der letzte Unter-{issue} gelöst ist, wird die {idea}: {split} gelöst und damit auch das Hauptproblem.
+
+
+
+=== Alltagsentscheidung - Wochenendplanung
+* [x] {issue}: Wohin am Wochenende fahren?
+
+** [ ] {idea}: In die Berge zum Wandern
+*** [ ] {issue}: Wettervorhersage prüfen
+*** [ ] {issue}: Welche Hütte hat noch frei?
+
+** [-] {idea}: An den See zum Schwimmen
+*** [-] {issue}: Wassertemperatur ist noch zu kalt
+
+** [x] {idea}: Das neue Technik-Museum besuchen
+*** [x] {issue}: Öffnungszeiten?
+**** [x] {idea}: Sa+So 10-18 Uhr
+*** [x] {issue}: Tickets?
+**** [x] {idea}: Online kaufen, um Wartezeit zu sparen
+
+** {comment}: Ich würde am liebsten ans Meer, aber das ist zu weit für ein Wochenende. -- Anna
+
+Hier wurde die Idee, in die Berge zu fahren, nicht weiter verfolgt.
+
+
+=== Produktverbesserung - Nutzerbindung
+* [ ] {issue}: Wie können wir die Benutzerbindung unserer App erhöhen?
+
+** [ ] {idea}: {split} Das Feature umsetzen, was zur besten Verringerung der Nutzererfahrung führt.
+*** [ ] {issue}: Analyse des aktuellen Nutzerverhaltens (Wo steigen sie aus?)
+*** [ ] {issue}: Ideen für neue Features sammeln
+
+** [ ] {idea}: Gamification-Elemente einführen
+*** [ ] {issue}: Welche Art von Gamification passt zu unserer App?
+**** [ ] {idea}: Punktesystem
+**** [ ] {idea}: Badges für erreichte Ziele
+*** [ ] {issue}: Technischer Aufwand für die Implementierung?
+
+** [ ] {idea}: Push-Benachrichtigungen verbessern
+*** [ ] {issue}: Wie können wir Benachrichtigungen personalisieren?
+**** [ ] {issue}: Welche Datenpunkte können wir nutzen?
+*** [-] {idea}: Frequenz der Benachrichtigungen pauschal erhöhen
+**** [-] {issue}: Risiko, dass Nutzer genervt sind und die App deinstallieren
+
+
+
+
+
+=== Software – Hohe Fehlerquote nach Release
+- {issue}: Nach dem letzten Release ist die Fehlerquote in Produktion stark gestiegen
+
+** [ ] {idea}: {split}
+*** [ ] {issue}: Reproduzierbarkeit sicherstellen (Logs, Schritte, betroffene Routen)
+*** [ ] {issue}: Umfang und Auswirkung quantifizieren (Metriken, A/B-Vergleich)
+*** [ ] {issue}: Mögliche Ursachen eingrenzen (Code, Config, Infrastruktur)
+*** [ ] {issue}: Sofortmaßnahmen und Rückfallplan definieren
+
+** [ ] {idea}: Feature-Flag für kritisches Modul deaktivieren
+*** [ ] {issue}: Welche User-Segmente sind betroffen?
+**** [x] {idea}: Nur Neukunden-Pfade
+*** [ ] {issue}: Ist die Deaktivierung ohne Migrationsfolge möglich?
+**** [-] {idea}: Direkt deaktivieren
+***** [-] {issue}: Datenmigration würde inkonsistente Stati erzeugen
+**** [x] {idea}: Deaktivierung nach Hotfix mit Guard-Checks
+***** [x] {issue}: Guard-Checks implementieren und testen
+
+** [ ] {idea}: {split} Root-Cause-Analyse strukturieren
+*** [ ] {issue}: Code-Änderungen seit letztem stabilen Build diffen
+**** [x] {idea}: API-Client Timeout wurde gesenkt
+***** {comment}: Verdächtig, da Timeouts mit Spitzenlast korrelieren
+*** [ ] {issue}: Infrastrukturereignisse prüfen (Deploy, Scaling, Ratelimits)
+**** [x] {idea}: Autoscaling-Regel griff zu langsam
+*** [ ] {issue}: Konfigurationsänderungen (Feature-Toggles, Env Vars)
+**** [x] {idea}: Retries von 3 auf 1 reduziert
+** [x] {idea}: Sofortmaßnahme: Timeouts und Retries auf vorherige Werte zurücksetzen
+*** [x] {issue}: Rollout über Konfigurationsservice
+**** [x] {idea}: Staged Rollout 10% -> 50% -> 100%
+*** [x] {issue}: Monitoring-Schwellen testen
+**** [x] {idea}: Error Budget-Alarm validiert
+***** {comment}: Fehlerquote fällt innerhalb von 15 Minuten unter Basislinie
+
+== Team-Offsite – Zwei Tage Strategieworkshop planen
+- {issue}: Ein zweitägiges Team-Offsite innerhalb von sechs Wochen planen
+
+** [ ] {idea}: {split}
+*** [ ] {issue}: Ziel und Agenda definieren
+*** [ ] {issue}: Ort und Budget festlegen
+*** [ ] {issue}: Teilnahme und Logistik klären
+*** [ ] {issue}: Inhalte/Methoden vorbereiten
+
+** [ ] {idea}: Remote durchführen (100% online)
+*** [ ] {issue}: Passt das zu den Offsite-Zielen (Beziehungsaufbau, Fokus)?
+**** [-] {idea}: Ja, ist gleichwertig
+***** [-] {issue}: Fehlende informelle Zeit vermindert Vertrauensaufbau
+**** [x] {idea}: Teilweise geeignet, aber nicht optimal
+***** {comment}: Für Strategie-Alignment ok, Teambuilding leidet
+
+** [x] {idea}: {split} Präsenz innerhalb von 3 Stunden Anreise organisieren
+*** [x] {issue}: Ziel und Agenda definieren
+**** [x] {idea}: Tag 1 Strategie-Alignment, Tag 2 Roadmap + Retrospektive
+***** {comment}: 2× 90-Minuten-Blöcke pro Halbtag, Puffer für Diskussionen
+*** [x] {issue}: Ort und Budget festlegen
+**** [x] {idea}: Seminarhaus am Stadtrand, 120€ p.P./Tag inkl. Verpflegung
+*** [ ] {issue}: Teilnahme und Logistik klären
+**** [x] {idea}: Doodle für Verfügbarkeit, Deadline in 48h
+**** [ ] {idea}: Fahrgemeinschaften organisieren
+***** [ ] {issue}: Wer fährt von welchem Standort?
+****** [x] {idea}: Drei Sammelpunkte definieren
+****** [ ] {idea}: Fahrer mit freien Plätzen benennen
+*** [ ] {issue}: Inhalte/Methoden vorbereiten
+**** [x] {idea}: Moderationsplan mit Timeboxes
+**** [ ] {idea}: Materialliste erstellen
+***** [ ] {issue}: Whiteboards, Karten, Timer, Kamera
+****** [x] {idea}: Vor Ort verfügbar laut Anbieter
+***** [ ] {issue}: Hybrid-Teilnahme für zwei Remote-Kollegen
+****** [x] {idea}: Konferenzraum mit Kamera/Mikro reservieren
+****** [ ] {idea}: Test-Call eine Woche vorher
+******* [x] {issue}: Termin mit Remote-Kollegen abstimmen
+
+** {comment}: Falls die Fahrgemeinschaften bis nächste Woche nicht stehen, prüfen wir Bahn-Tickets als Plan B.
+
+
+
+
+
+
+
+
+
+== Warum {iba}? – Abgrenzung zu ähnlichen Methoden
+
+.Kurzzusammenfassung
+- {iba} strukturiert Probleme hierarchisch und lösungsorientiert.
+- Es verbindet Ideenfindung mit systematischer Klärung offener Fragen.
+- Der Status jedes Eintrags wird aus den Unterpunkten logisch abgeleitet – Fortschritt ist jederzeit sichtbar.
+
+.Wann {iba} besonders nützlich ist
+- Unklare, mehrdeutige Problemstellungen mit vielen offenen Fragen.
+- Gruppenarbeit, in der Ideen und Folgefragen parallel entstehen.
+- Entscheidungen, die sowohl Kreativität (Ideen) als auch Zerlegung in Teilprobleme erfordern.
+
+.Wann eher nicht
+- Reine Abarbeitung bekannter, linearer Schritte (Checklisten).
+- Wenn es bereits eine klare Entscheidungsregel gibt (z.B. fest definierte KPIs ohne Diskussionsbedarf).
+
+.Abgrenzung
+Brainstorming::
+Erzeugt Ideen, aber ohne systematische Klärung ihrer Umsetzbarkeit. {iba} koppelt Ideen direkt mit Folgefragen ({issue}) und bewertet sie über Status.
+Pro/Contra-Listen::
+Eignen sich für 1:1-Entscheidungen, skalieren aber schlecht bei Unterfragen. {iba} erlaubt beliebig tiefe Zerlegung und macht Abhängigkeiten explizit ({split}).
+
+Entscheidungsbäume::
+Modellieren Pfade zu Ergebnissen, jedoch selten die Diskussionshistorie. {iba} dokumentiert zugleich Alternativen, Sackgassen `[-]` und Begründungen.
+
+Design Thinking / Double Diamond::
+Prozessrahmen für Exploration und Prototyping. {iba} ist ein leichtgewichtiges Textformat, das in jeder Phase als Denk- und Kommunikationsstruktur eingesetzt werden kann.
+
+Issue-/Bug-Tracker::
+Verwalten Arbeitseinheiten, nicht zwingend Argumentationsketten. {iba} bildet die Argumentation und Entscheidung transparent im Dokument selbst ab (unabhängig von Tools).
+
+RFCs / Architekturentscheidungen (ADR)::
+Halten Entscheidungen fest, meist erst nach Diskussion. {iba} unterstützt den Entstehungsprozess davor – die resultierende Lösung kann dann in RFC/ADR überführt werden.
+
+Argument-/Debattenkarten (Argument Maps)::
+Fokussieren auf logische Pro-/Kontra-Argumente. {iba} kombiniert Argumente mit operablen Teilproblemen und klaren Abschlusskriterien pro Knoten.
+
+.Typische Vorteile
+- Niedrige Hürde: Funktioniert in jedem Editor, ohne Spezial-Tooling.
+- Transparenz: Jeder sieht, warum etwas gelöst, ungelöst oder unlösbar ist.
+- Skalierbarkeit: Von Alltagsentscheidungen bis zu komplexen Produktfragen.
+- Anschlussfähig: Ergebnisse lassen sich in Tickets, Roadmaps oder RFCs überführen.
+
+TIP: Nutze {split}, sobald Diskussionen sich im Kreis drehen. Die Zerlegung in Teilprobleme beschleunigt die Klärung und macht blockierende Fragen sichtbar.
+
