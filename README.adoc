@@ -8,7 +8,8 @@
 :toclevels: 3
 :icons: font
 :sectnums:
-// LBA – Lösungsbaum-Argumentation (LBA)
+// Alternative names:
+// Lösungsbaum-Argumentation (LBA)
 // Lösungsbaum-Methode (LBM)
 // Strukturierte Lösungsfindung (SLF)
 // Problem-Zerlegung & Lösung (PZL)
@@ -378,3 +379,15 @@ Fokussieren auf logische Pro-/Kontra-Argumente. {iba} kombiniert Argumente mit o
 
 TIP: Nutze {split}, sobald Diskussionen sich im Kreis drehen. Die Zerlegung in Teilprobleme beschleunigt die Klärung und macht blockierende Fragen sichtbar.
 
+
+
+== About
+Die Methode wurde von Dr. Max Völkel während seiner Promotion am FZI Karlsruhe entwickelt. Sie wurde erstmals 2006 unter dem Namen __https://www.xam.de/2006/02-ibaw.html[Issue-Based Argumentation in a Wiki (IBAW)]__ beschrieben.
+IBAW stellt dabei im wesentlichen eine pragmatische Text-Syntax für das Modell von Kunz und Rittel (1970) dar. In der Promotion zu https://pkm.xam.de/go/pkm/[persönlichen Wissensmodellen mit semantischen Technologien] finden sich weitere theoretische Hintergründe.
+Spǎter wurde die Methode von Dr. Völkel immer öfter in einem Texteditor (allein) oder in kollaborativen  Werkzeugen (Google Docs, im Team) eingesetzt um komplexe und komplizierte Probleme meist mit Erfolg zu strukturieren und zu lösen.
+Als kleines Geburtstagsgeschenk an https://www.leobard.net/blog/about-leo-sauermann/[Leo Sauermann] und als Gruß an https://www.heikohaller.de/[Heiko Haller] (beide wichtige Forscherkollegen) wurde die Methode am 2025-08-30 besser dokumentiert und hier veröffentlicht.
+Als neuer deutscher Name wurde __Lösungsbaum-Argumentation (LBA)__ gewählt, um die Methode auch im deutschsprachigen Raum bekannter zu machen.
+
+.Referenzen
+Kunz und Rittel (1970):: Kunz, W. and H. W. J. Rittel (1970). Issues as elements of information systems.
+Technical report wp-131, University of California, Berkeley
